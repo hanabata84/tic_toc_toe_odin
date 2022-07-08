@@ -10,18 +10,93 @@
     <title>Tic Toc Toe</title>
 </head>
 
-<body class="flex justify-center items-center h-screen">
-    <div id="gameBoard" class="bg-gray-800 w-6/12 h-[500px] rounded-xl shadow-lg border border-slate-700">
+<body class="flex flex-col justify-center items-center h-screen">
+
+    <div id="gameBoard" class="bg-gray-800 w-[500px] h-[500px] rounded-xl shadow-lg border border-slate-700">
         <div id="gameGrid" class="grid gap-4 grid-cols-3 grid-rows-3 mx-6 mt-6 h-[90%]">
-            <button id="btnOne" class="bg-gray-700 rounded-lg"></button>
-            <button id="btnTwo" class="bg-gray-700 rounded-lg"></button>
-            <button id="btnThree" class="bg-gray-700 rounded-lg"></button>
-            <button id="btnFour" class="bg-gray-700 rounded-lg"></button>
-            <button id="btnFive" class="bg-gray-700 rounded-lg"></button>
-            <button id="btnSix" class="bg-gray-700 rounded-lg"></button>
-            <button id="btnSeven" class="bg-gray-700 rounded-lg"></button>
-            <button id="btnEight" class="bg-gray-700 rounded-lg"></button>
-            <button id="btnNine" class="bg-gray-700 rounded-lg"></button>
+            <button id="btn1"
+                class="bg-gray-700 rounded-lg text-8xl text-slate-300 hover:bg-gray-800 hover:border-2 hover:border-slate-700"
+                onclick=clickButton(0)></button>
+            <button id="btn2"
+                class="bg-gray-700 rounded-lg text-8xl text-slate-300 hover:bg-gray-800 hover:border-2 hover:border-slate-700"
+                onclick=clickButton(1)></button>
+            <button id="btn3"
+                class="bg-gray-700 rounded-lg text-8xl text-slate-300 hover:bg-gray-800 hover:border-2 hover:border-slate-700"
+                onclick=clickButton(2)></button>
+            <button id="btn4"
+                class="bg-gray-700 rounded-lg text-8xl text-slate-300 hover:bg-gray-800 hover:border-2 hover:border-slate-700"
+                onclick=clickButton(3)></button>
+            <button id="btn5"
+                class="bg-gray-700 rounded-lg text-8xl text-slate-300 hover:bg-gray-800 hover:border-2 hover:border-slate-700"
+                onclick=clickButton(4)></button>
+            <button id="btn6"
+                class="bg-gray-700 rounded-lg text-8xl text-slate-300 hover:bg-gray-800 hover:border-2 hover:border-slate-700"
+                onclick=clickButton(5)></button>
+            <button id="btn7"
+                class="bg-gray-700 rounded-lg text-8xl text-slate-300 hover:bg-gray-800 hover:border-2 hover:border-slate-700"
+                onclick=clickButton(6)></button>
+            <button id="btn8"
+                class="bg-gray-700 rounded-lg text-8xl text-slate-300 hover:bg-gray-800 hover:border-2 hover:border-slate-700"
+                onclick=clickButton(7)></button>
+            <button id="btn9"
+                class="bg-gray-700 rounded-lg text-8xl text-slate-300 hover:bg-gray-800 hover:border-2 hover:border-slate-700"
+                onclick=clickButton(8)></button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="hidden relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <!--
+      Background backdrop, show/hide based on modal state.
+  
+      Entering: "ease-out duration-300"
+        From: "opacity-0"
+        To: "opacity-100"
+      Leaving: "ease-in duration-200"
+        From: "opacity-100"
+        To: "opacity-0"
+    -->
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+        <div class="fixed z-10 inset-0 overflow-y-auto">
+            <div class="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
+                <!--
+          Modal panel, show/hide based on modal state.
+  
+          Entering: "ease-out duration-300"
+            From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            To: "opacity-100 translate-y-0 sm:scale-100"
+          Leaving: "ease-in duration-200"
+            From: "opacity-100 translate-y-0 sm:scale-100"
+            To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+        -->
+                <div
+                    class="relative bg-[#242526] rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-lg sm:w-full">
+                    <div class="bg-[#242526] px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                        <div class="sm:flex sm:items-start">
+                            <div
+                                class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-gray-700 sm:mx-0 sm:h-10 sm:w-10">
+                                <!-- Heroicon name: outline/exclamation -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-300" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                                </svg>
+                            </div>
+                            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                <h3 class="text-3xl font-medium text-slate-300" id="modal-title">
+                                    Congratulations! You win!
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-[#242526] px-4 py-3 flex justify-center sm:px-6 sm:flex sm:flex-row-reverse">
+                        <button id="closeModal" type="button"
+                            class="w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-gray-700 text-base font-medium text-slate-200 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-current sm:ml-3 sm:w-auto sm:text-sm">Reset
+                            Game</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
