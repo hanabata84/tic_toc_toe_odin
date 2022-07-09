@@ -11,6 +11,32 @@ const winningCombi = [
     [2, 4, 6]
 ]
 
+const startGame = document.getElementById("startGame")
+const startModal = document.getElementById("startModal");
+startGame.addEventListener("click", () => {
+    startModal.classList.remove("hidden");
+})
+
+const playerX = document.getElementById("playerX");
+const board = document.getElementById("gameBoard");
+
+playerX.addEventListener("click", () => {
+    startModal.classList.add("hidden")
+    startGame.classList.add("hidden")
+    board.classList.remove("hidden")
+    playerMark = "X";
+})
+
+const playerO = document.getElementById("playerO");
+
+playerO.addEventListener("click", () => {
+    startModal.classList.add("hidden")
+    startGame.classList.add("hidden")
+    board.classList.remove("hidden")
+    playerMark = "O";
+})
+
+
 const clickButton = (mark) => {
     if (gameBoard[mark] === undefined) {
         if (playerMark === 'X') {
@@ -27,6 +53,7 @@ const clickButton = (mark) => {
 
 const gamePlay = (mark, playerMark) => {
     const winModal = document.getElementById('modal');
+    const modalTitle = document.getElementById("modal-heading");
     gameBoard[mark] = playerMark;
     for (let i = 0; i <= 7; i++) {
         const winCond = winningCombi[i];
@@ -37,6 +64,12 @@ const gamePlay = (mark, playerMark) => {
             continue;
         }
         if (a === b && b === c) {
+            modalTitle.textContent = `${a} wins!`
+            winModal.classList.remove("hidden")
+            break
+        }
+        if (gameBoard.length === 9 && gameBoard.includes(undefined) === false) {
+            modalTitle.textContent = 'draw!'
             winModal.classList.remove("hidden")
             break
         }
